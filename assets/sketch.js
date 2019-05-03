@@ -86,8 +86,7 @@ function draw() {
     }
   }
 
-  player1.bounce(player2);
-  player2.bounce(player1);
+
 
   if (keyWentDown('w')) {
     p1y -= 1;
@@ -137,6 +136,64 @@ function draw() {
     if (p2x > 5) {
       p2x = 5;
     }
+  }
+
+  if (player1.collide(player2) || player2.collide(player1)) {
+    p1x *= -1;
+    p2x *= -1;
+    p1y *= -1;
+    p2y *= -1;
+
+    if (p1x < -5) {
+      p1x = -5;
+    }
+    if (p1y < -5) {
+      p1y = -5;
+    }
+    if (p2x < -5) {
+      p2x = -5;
+    }
+    if (p2y < -5) {
+      p2y = -5;
+    }
+
+    if (p1x > 5) {
+      p1x = 5;
+    }
+    if (p1y > 5) {
+      p1y = 5;
+    }
+    if (p2x > 5) {
+      p2x = 5;
+    }
+    if (p2y > 5) {
+      p2y = 5;
+    }
+
+    if (p1x > 0) {
+      p1x++;
+    } else {
+      p1x--;
+    }
+
+    if (p2x > 0) {
+      p2x++;
+    } else {
+      p2x--;
+    }
+
+    if (p1y > 0) {
+      p1y++;
+    } else {
+      p1y--;
+    }
+
+    if (p2y > 0) {
+      p2y++;
+    } else {
+      p2y--;
+    }
+
   }
 
   if (
@@ -200,6 +257,9 @@ function draw() {
   player1.velocity.y = p1y;
   player2.velocity.x = p2x;
   player2.velocity.y = p2y;
+
+  console.log("p1v", player1.velocity);
+  console.log("p2v", player2.velocity);
 
   drawSprite(player1);
   drawSprite(player2);
